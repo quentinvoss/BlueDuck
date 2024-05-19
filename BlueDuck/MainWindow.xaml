@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlueDuck"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="BlueDuck" Height="500" Width="500">
     <Grid>
-
+        <Grid >
+            <StackPanel>
+                <TextBlock x:Name="emptyErrorMessage" Margin="125,130,125,0" FontFamily="Arial" Visibility="Hidden">
+                    <Run Foreground="Red">Keines der Felder darf leer sein!</Run>
+                </TextBlock>
+                <TextBlock Margin="125,0,125,0" Text="Italienisches Wort:"  FontFamily="Arial"/>
+                <TextBox x:Name="LangABox" Margin="125,0,125,0"/>
+                <TextBlock Margin="125,20,125,0" Text="Deutsches Wort:"  FontFamily="Arial"/>
+                <TextBox x:Name="LangBBox" Margin="125,0,125,0"/>
+                <Grid Margin="125,50,125,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="1" x:Name="AddButton" Margin="25,0,0,0" Height="21" Content="Wort hinzufügen" Click="AddButtonClick"/>
+                    <Button Grid.Column="0" x:Name="SaveButton" Margin="0,0,25,0" Height="21" Content="Speichern" Click="SaveButtonClick"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
