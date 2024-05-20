@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,18 +15,32 @@ namespace BlueDuck
     public partial class MainWindow : Window
     {
         private WordManager wordManager = new WordManager();
+        private Dictionary<CheckBox, string> checkBoxTags = new Dictionary<CheckBox, string>();
         public MainWindow()
         {
             InitializeComponent();
+            checkBoxTags.Add(Verb, "Verb");
+            checkBoxTags.Add(Irregular, "Irregular");
+            checkBoxTags.Add(Isc, "-isc-");
         }
-
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
             //It is checked if the input is complete
-            if(LangABox.Text != "" && LangBBox.Text != "")
+            if (LangABox.Text != "" && LangBBox.Text != "" && Lesson.Text != "")
             {
                 List<string> langBwords = new List<string> { LangBBox.Text };
-                wordManager.AddWord(LangABox.Text, "italian", langBwords, "german");
+                List<string> tags = new List<string>();
+                tags.Add(Lesson.Text);
+                if (!wordManager.loadData.tags.Contains(Lesson.Text)) { wordManager.loadData.tags.Add(Lesson.Text); }
+                foreach (KeyValuePair<CheckBox, string> pair in checkBoxTags)
+                {
+                    if (pair.Key.IsChecked == true)
+                    {
+                        tags.Add(pair.Value);
+                        pair.Key.IsChecked = false;
+                    }
+                }
+                wordManager.AddWord(LangABox.Text, "italian", langBwords, "german", tags);
                 LangABox.Text = null;
                 LangBBox.Text = null;
                 emptyErrorMessage.Visibility = Visibility.Hidden;
