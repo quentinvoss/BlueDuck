@@ -21,7 +21,7 @@ namespace BlueDuck
         public int Id { get; set; } = 0;
         public List<int> TranslationIds { get; set; } = new List<int>();
 
-        //The tags will later be used to categorize the words for learning.
+        //The tags are used to categorize the words for learning.
         public List<string> Tags { get; set; } = new List<string>();
 
     }
@@ -150,6 +150,22 @@ namespace BlueDuck
         {
             loadData.lastLangIds[(language == "german" ? 0 : 1)]++;
             return loadData.lastLangIds[(language == "german" ? 0 : 1)];
+        }
+
+        public Dictionary<int,Word> WordsWithTag(string tag)
+        {
+            Dictionary<int,Word> Output = new Dictionary<int,Word>();
+
+            foreach(Word word in vocabulary)
+            {
+                if (word.Tags.Contains(tag))
+                {
+                    Output.Add(word.Id, word);
+                }
+            }
+
+            return Output;
+
         }
     }
 }

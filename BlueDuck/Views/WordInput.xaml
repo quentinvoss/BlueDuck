@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="BlueDuck.Views.WordInput"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BlueDuck.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="173" d:DesignWidth="376">
+    <Grid Background="White" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock  Text="Italienisches Wort:"  FontFamily="Arial"/>
+            <TextBox x:Name="LangABox"/>
+            <TextBlock Margin="0,20,0,0" Text="Deutsches Wort:"  FontFamily="Arial"/>
+            <TextBox Margin="0,0,0,0" x:Name="LangBBox"/>
+            <TextBlock Margin="0,0,0,30" x:Name="emptyErrorMessage"  FontFamily="Arial" Visibility="Hidden">
+            <Run Foreground="Red">Keines der Textfelder darf leer sein!</Run>
+            </TextBlock>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" x:Name="AddButton" Margin="25,0,0,0" HorizontalAlignment="Right" Width="100" Height="21" Content="Wort hinzufügen" Click="AddButtonClick"/>
+                <Button Grid.Column="0" x:Name="SaveButton" Margin="0,0,25,0" HorizontalAlignment="Left" Width="100" Height="21" Content="Speichern" Click="SaveButtonClick"/>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="50,0,0,0">
+            <TextBlock Text="Tags:" FontFamily="Arial"/>
+            <TextBlock Text="Lektion:" FontFamily="Arial" Margin="0,10,0,0"/>
+            <TextBox x:Name="Lesson" MinWidth="50"/>
+            <TextBlock Text="Verb" FontFamily="Arial" Margin="0,10,0,0"/>
+            <CheckBox x:Name="Verb"/>
+            <TextBlock Text="Unregelmäßig" FontFamily="Arial" Margin="0,10,0,0"/>
+            <CheckBox x:Name="Irregular"/>
+            <TextBlock Text="-isc-" FontFamily="Arial" Margin="0,10,0,0"/>
+            <CheckBox x:Name="Isc"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

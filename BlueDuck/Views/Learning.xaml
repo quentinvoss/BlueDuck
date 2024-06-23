@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="BlueDuck.Views.Learning"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BlueDuck.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="ToTranslateText" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="text" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial"/>
+        <Button x:Name="ShowButton" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="21" Width="200" Content="Übersetzung(en) angzeigen" Click="ShowClick"/>
+        <Button x:Name="CorrectButton" Grid.Row="1" Grid.Column="0"  Height="21" Width="50" Content="Korrekt" Visibility="Hidden" Click="CorrectClick"/>
+        <Button x:Name="FalseButton" Grid.Row="1" Grid.Column="1"  Height="21" Width="50" Content="Falsch" Visibility="Hidden" Click="FalseClick"/>
+        <TextBlock x:Name="TranslatedText" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="text" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial"/>
+        <TextBlock Height="21" Width="120" Grid.RowSpan="3" Grid.ColumnSpan="2" Text="Du bist Fertig" TextAlignment="Center" Visibility="Hidden" x:Name="FinishedText"/>
+    </Grid>
+    
+</UserControl>

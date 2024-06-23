@@ -4,42 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlueDuck"
+        xmlns:viewmodels="clr-namespace:BlueDuck.ViewModels"
+        xmlns:views="clr-namespace:BlueDuck.Views"
         mc:Ignorable="d"
-        Title="BlueDuck" Height="720" Width="1280" MinHeight="300" MinWidth="300">
-    <Grid>
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock  Text="Italienisches Wort:"  FontFamily="Arial"/>
-                <TextBox x:Name="LangABox"/>
-                <TextBlock Margin="0,20,0,0" Text="Deutsches Wort:"  FontFamily="Arial"/>
-                <TextBox Margin="0,0,0,0" x:Name="LangBBox"/>
-                <TextBlock Margin="0,0,0,30" x:Name="emptyErrorMessage"  FontFamily="Arial" Visibility="Hidden">
-                    <Run Foreground="Red">Keines der Textfelder darf leer sein!</Run>
-                </TextBlock>
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="1" x:Name="AddButton" Margin="25,0,0,0" HorizontalAlignment="Right" Width="100" Height="21" Content="Wort hinzufügen" Click="AddButtonClick"/>
-                    <Button Grid.Column="0" x:Name="SaveButton" Margin="0,0,25,0" HorizontalAlignment="Left" Width="100" Height="21" Content="Speichern" Click="SaveButtonClick"/>
-                </Grid>
-            </StackPanel>
-            <StackPanel Grid.Column="1" Margin="50,0,0,0">
-                <TextBlock Text="Tags:" FontFamily="Arial"/>
-                <TextBlock Text="Lektion:" FontFamily="Arial" Margin="0,10,0,0"/>
-                <TextBox x:Name="Lesson" MinWidth="50"/>
-                <TextBlock Text="Verb" FontFamily="Arial" Margin="0,10,0,0"/>
-                <CheckBox x:Name="Verb"/>
-                <TextBlock Text="Unregelmäßig" FontFamily="Arial" Margin="0,10,0,0"/>
-                <CheckBox x:Name="Irregular"/>
-                <TextBlock Text="-isc-" FontFamily="Arial" Margin="0,10,0,0"/>
-                <CheckBox x:Name="Isc"/>
-            </StackPanel>
-        </Grid>
+        Title="BlueDuck" Height="300" Width="650" MinHeight="300" MinWidth="650">
+    <Window.Resources>
+        <DataTemplate x:Name="WordInputTemplate" DataType="{x:Type viewmodels:WordInputViewModel}">
+            <views:WordInput DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="LearningTemplate" DataType="{x:Type viewmodels:LearnSpaceViewModel}">
+            <views:LearnSpace DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Margin="25,0,25,0" Content="Wörter eingeben" Grid.Column="0" Grid.Row="0" Height="21" Width="100" Click="WordInputClick"/>
+        <Button Margin="25,0,25,0" Content="Lernen" Grid.Column="0" Grid.Row="1" Height="21" Width="100" Click="LearningClick"/>
+        <ContentControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Content="{Binding}"/>
     </Grid>
 </Window>
